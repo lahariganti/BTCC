@@ -1,0 +1,28 @@
+PODS:
+  - Alamofire (4.8.2)
+  - IQKeyboardManagerSwift (6.2.1)
+  - SwiftyJSON (4.3.0)
+  - TextFieldEffects (1.5.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - IQKeyboardManagerSwift
+  - SwiftyJSON
+  - TextFieldEffects
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - IQKeyboardManagerSwift
+    - SwiftyJSON
+    - TextFieldEffects
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  IQKeyboardManagerSwift: 0f0ae8935360b4003e6ea1ac7c19898f01e2f7c7
+  SwiftyJSON: 6faa0040f8b59dead0ee07436cbf76b73c08fd08
+  TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
+
+PODFILE CHECKSUM: fc882747e4cac595f938f41fa0f3318341766477
+
+COCOAPODS: 1.5.3
