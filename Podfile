@@ -9,5 +9,4 @@ target 'BTCC' do
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'IQKeyboardManagerSwift'
-  pod 'TextFieldEffects'
 end

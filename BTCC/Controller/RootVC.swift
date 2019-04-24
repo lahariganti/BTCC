@@ -9,30 +9,35 @@
 import UIKit
 
 class RootVC: UIViewController {
-    let textField: UITextField = {
-        let tf = UITextField()
-        tf.placeholder = "Name"
-        tf.layer.cornerRadius = 8
-        tf.clipsToBounds = true
-        tf.backgroundColor = .white
-        tf.layer.borderColor = UIColor.lightBackground.cgColor
-        tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.setLeftPaddingPoints(10)
-        tf.setRightPaddingPoints(10)
-        return tf
-    }()
+    @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var nameTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .darkBackground
-        view.addSubview(textField)
-        setupTextField()
+        view.addSubview(nameTextField)
+        nameTextField.delegate = self
+        configureSubViews()
     }
 
-    private func setupTextField() {
-        textField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        textField.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        textField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -64).isActive = true
-        textField.heightAnchor.constraint(equalToConstant: 30).isActive = true
+    private func configureSubViews() {
+        nameTextField.layer.cornerRadius = 8
+        nameTextField.clipsToBounds = true
+        nameTextField.setLeftPaddingPoints(10)
+        nameTextField.setRightPaddingPoints(10)
+    }
+
+    func writeToUserDefaults() {
+        guard let userName = nameTextField.text else { return }
+        UserDefaults.standard.set(userName, forKey: KeyConstants.userName)
+        UserDefaults.standard.synchronize()
+    }
+}
+
+extension RootVC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        nameTextField.resignFirstResponder()
+        writeToUserDefaults()
+        present(UINavigationController(rootViewController: WelcomeVC()), animated: true, completion: nil)
+        return true
     }
 }

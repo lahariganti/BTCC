@@ -18,10 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow()
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: RootVC())
+        if UserDefaults.standard.value(forKey: KeyConstants.userName) != nil {
+             window?.rootViewController = UINavigationController(rootViewController: WelcomeVC())
+        } else {
+            window?.rootViewController = RootVC()
+        }
 
         IQKeyboardManager.shared.enable = true
-        
+        IQKeyboardManager.shared.enableAutoToolbar = false
+
         return true
     }
 

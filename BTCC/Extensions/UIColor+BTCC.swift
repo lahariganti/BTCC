@@ -16,5 +16,10 @@ extension UIColor {
     static var darkBackground: UIColor {
         return UIColor(red: 240/255, green: 240/255, blue: 240/255, alpha: 1)
     }
+
+    static var btccDarkGreen: UIColor {
+        return UIColor(red: 4/255, green: 93/255, blue: 86/255, alpha: 1)
+    }
+
 }
 
