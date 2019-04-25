@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RLBAlertsPickers
 
 class WelcomeVC: UIViewController {
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -30,6 +31,14 @@ class WelcomeVC: UIViewController {
 
 
     @objc func currencyPickerButtonPressed() {
-        self.present(UINavigationController(rootViewController: ConversionVC(currency: "INR")), animated: true, completion: nil)
+        let alert = UIAlertController()
+        alert.view.translatesAutoresizingMaskIntoConstraints = false
+        alert.view.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16).isActive = false
+        alert.addLocalePicker(type: .currency) { info in
+            guard let currency = info?.currencyCode else { return }
+            self.present(UINavigationController(rootViewController: ConversionVC(currency: currency)), animated: true, completion: nil)
+        }
+        alert.addAction(title: "Cancel", style: .cancel)
+        alert.show()
     }
 }
