@@ -29,16 +29,16 @@ class WelcomeVC: UIViewController {
             welcomeLabel.text = "Welcome, \(userName)!"
         }
 
-
     @objc func currencyPickerButtonPressed() {
-        let alert = UIAlertController()
-        alert.view.translatesAutoresizingMaskIntoConstraints = false
-        alert.view.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -16).isActive = false
-        alert.addLocalePicker(type: .currency) { info in
-            guard let currency = info?.currencyCode else { return }
-            self.present(UINavigationController(rootViewController: ConversionVC(currency: currency)), animated: true, completion: nil)
+        DispatchQueue.main.async {
+            let alert = UIAlertController()
+            alert.view.translatesAutoresizingMaskIntoConstraints = false
+            alert.addLocalePicker(type: .currency) { info in
+                guard let currency = info?.currencyCode else { return }
+                self.present(UINavigationController(rootViewController: ConversionVC(currency: currency)), animated: true, completion: nil)
+            }
+            alert.addAction(title: "Cancel", style: .cancel)
+            self.present(alert, animated: true, completion: nil)
         }
-        alert.addAction(title: "Cancel", style: .cancel)
-        alert.show()
     }
 }
